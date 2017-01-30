@@ -5,30 +5,43 @@ function Country(countryName, totalPop, provinces){
   this.totalPopulation = totalPop;
   this.provinces = provinces;
   this.percentInfected = 0;
-  this.countryNeighbors
+  this.countryNeighbors = [];
 };
 
 // Country prototype Methods
-GameManager.prototype.setProvincePop = function(){
+// This method sets each province population to a fraction of the total country population
+Country.prototype.setProvincePop = function(){
   var amount = this.totalPopulation;
   var totalProvinceCount = this.provinces.length;
   this.provinces.forEach(function(province){
     province.population = amount / totalProvinceCount;
-  })
-
+  });
 };
 
+// This method is used to add a neighbor to a country
+Country.prototype.addNeighbor = function(neighbor){
+  this.countryNeighbors.push(neighbor);
+}
+
+
+
 // Province object
-// Params: provinceName: String, svgName: String
-function Province(provinceName, svgName){
+// Params: provinceName: String, svgId: String
+function Province(provinceName, svgId){
   this.provinceName = provinceName;
-  this.svgName = svgName;
+  this.svgId = svgId;
   this.population = 0;
   this.percentInfected = 0;
   this.provinceNeighbors = [];
 };
 
 // Province prototype Methods
+// This method adds a neighbor to a province
+Province.prototype.addNeighbor = function(neighbor){
+  this.provinceNeighbors.push(neighbor);
+}
+
+
 
 // Disease object
 // Params: diseaseName: String, virulity: floating point number, lethality: floating point number, displayColor: string
@@ -75,6 +88,35 @@ GameManager.prototype.reset = function(neighbors){
 
 };
 
+
+// Testing
+
+var colorado = new Province("Colorado", "ColoradoSVG");
+var kansas = new Province("Kansas", "KansasSVG");
+kansas.addNeighbor(colorado);
+colorado.addNeighbor(kansas);
+var provinceList = [];
+provinceList.push(colorado);
+provinceList.push(kansas);
+var usa = new Country("USA", 300000000, provinceList);
+usa.setProvincePop();
+var manitoba = new Province("Manitoba", "ManitobaSVG");
+var ottawa = new Province("Ottawa", "OttawaSVG");
+manitoba.addNeighbor(ottawa);
+ottawa.addNeighbor(manitoba);
+var provinceList2 = [];
+provinceList2.push(manitoba);
+provinceList2.push(ottawa);
+var canada = new Country("Canada", 100000000, provinceList2);
+usa.addNeighbor(canada);
+canada.addNeighbor(usa);
+var countryList = [];
+countryList.push(usa);
+countryList.push(canada);
+var disease = new Disease("Bad Disease", 0.1234, 2.34, "blue");
+var gameState = new GameManager(countryList, disease);
+
+console.log(gameState);
 
 
 

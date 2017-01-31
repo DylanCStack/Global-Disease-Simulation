@@ -39,6 +39,10 @@ function Province(provinceName, svgId){
   this.provinceCoords = [];
   this.xBuffer = 0;
   this.yBuffer = 0;
+  this.xLeft = 0;
+  this.xRight = 0;
+  this.yTop = 0;
+  this.yBottom = 0;
 };
 
 // Province prototype Methods
@@ -64,28 +68,32 @@ Province.prototype.findCenter = function(){
 
 // Method for setting buffer size based on size of provinceCoords
 Province.prototype.getBufferSize = function(){
-  var xleft = 10000000;
-  var xright = -1000000;
-  var ytop = 10000000;
-  var ybottom = -100000000;
+  var xLeft = 10000000;
+  var xRight = -1000000;
+  var yTop = 10000000;
+  var yBottom = -100000000;
 
   this.provinceCoords.forEach(function(coord){
-    if (coord.xCoord < xleft){
-      xleft = coord.xCoord;
+    if (coord.xCoord < xLeft){
+      xLeft = coord.xCoord;
     }
-    if (coord.xCoord > xright){
-      xright = coord.xCoord;
+    if (coord.xCoord > xRight){
+      xRight = coord.xCoord;
     }
-    if (coord.yCoord < ytop){
-      ytop = coord.yCoord;
+    if (coord.yCoord < yTop){
+      yTop = coord.yCoord;
     }
-    if (coord.yCoord > ybottom){
-      ybottom = coord.yCoord;
+    if (coord.yCoord > yBottom){
+      yBottom = coord.yCoord;
     }
   });
 
-  this.xBuffer = (xright - xleft);
-  this.yBuffer = (ybottom - ytop);
+  this.xBuffer = (xRight - xLeft)*1.5;
+  this.yBuffer = (yBottom - yTop)*1.5;
+  this.xLeft = xLeft;
+  this.xRight = xRight;
+  this.yBottom = yBottom;
+  this.yTop = yTop;
 
 
 

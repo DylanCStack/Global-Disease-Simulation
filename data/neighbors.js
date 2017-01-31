@@ -1,3 +1,13 @@
+function containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
 var countriesObjects = [];
 
 // from https://github.com/samayo/country-data/blob/master/src/country-population.json
@@ -267,6 +277,8 @@ $(document).ready(function(){
       tempProvince.provinceCoords.push(tempCoordinate);
     }
 
+    tempProvince.getBufferSize();
+
     // Push province object on to array of provinces for creating province relationships
     allProvinces.push(tempProvince);
 
@@ -292,32 +304,81 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
+  var buffer = 20;
+
+  //   //   // Check province 1 xright against province 2 xleft where province 1 ytop or ybottom is inside province 2 ytop or yBottom
+  //   //
+  //   //   // check province 1 ytop against province 2 ybottom where province 1 xleft or xright is inside of province 2 xleft and xright
+  //   //
+  //   //   // check province 1 ybottom against province 2 ytop where province 1 xleft or xright is inside of province 2 xleft and xright
+
+  allProvinces.forEach(function(oneProvince){
+
+    allProvinces.forEach(function(anotherProvince){
+      if((oneProvince.xLeft + buffer > anotherProvince.xRight) && ((oneProvince.xLeft - buffer) < anotherProvince.xRight) && ((oneProvince.yTop || oneProvince.yBottom) < anotherProvince.yBottom + buffer) && (oneProvince.yBottom || oneProvince.yTop) > anotherProvince.yTop - buffer){
+        oneProvince.addNeighbor(anotherProvince);
+      } else if ((oneProvince.xRight + buffer > anotherProvince.xLeft) && ((oneProvince.xRight - buffer) < anotherProvince.xLeft) && ((oneProvince.yTop || oneProvince.yBottom) < anotherProvince.yBottom + buffer) && (oneProvince.ybottom || oneProvince.yTop) > anotherProvince.yTop - buffer){
+        oneProvince.addNeighbor(anotherProvince);
+      } else if ((oneProvince.yTop + buffer > anotherProvince.yBottom) && ((oneProvince.yTop - buffer) < anotherProvince.yBottom) && ((oneProvince.xLeft || oneProvince.xRight) < anotherProvince.xRight + buffer) && (oneProvince.xLeft || oneProvince.xRight) > anotherProvince.xLeft - buffer) {
+        oneProvince.addNeighbor(anotherProvince);
+      } else if ((oneProvince.yBottom + buffer > anotherProvince.yTop) && ((oneProvince.yBottom - buffer) < anotherProvince.yTop) && ((oneProvince.xLeft || oneProvince.xRight) < anotherProvince.xRight + buffer) && (oneProvince.xLeft || oneProvince.xRight) > anotherProvince.xLeft - buffer) {
+        oneProvince.addNeighbor(anotherProvince);
+      }
+    });
+  });
+
+
 
   // go through each province
-  allProvinces.forEach(function(prov){
-    //get center value
-    var centerValue = prov.findCenter();
-    // set the province buffers
-    prov.getBufferSize();
-
-
-
-
-    // go through each other province and get its center value
-    allProvinces.forEach(function(provCompare){
-      var compareCenterValue = provCompare.findCenter();
-
-      if ((centerValue.xCoord + prov.xBuffer >= compareCenterValue.xCoord) && (centerValue.xCoord - prov.xBuffer <= compareCenterValue.xCoord) && (centerValue.yCoord + prov.yBuffer >= compareCenterValue.yCoord) && (centerValue.yCoord - prov.yBuffer <= compareCenterValue.yCoord) && (centerValue.xCoord !== compareCenterValue.xCoord) && (centerValue.yCoord !== compareCenterValue.yCoord)){
-        prov.addNeighbor(provCompare);
-        provCompare.addNeighbor(prov);
-      }
-
-
-
-    });
-
-
-  });
+  // allProvinces.forEach(function(provinceOne){
+  //   //get center value
+  //   var centerValue = provinceOne.findCenter();
+  //   // set the province buffers
+  //   provinceOne.getBufferSize();
+  //
+  //
+  //
+  //   // go through each other province and get its center value
+  //   // allProvinces.forEach(function(provinceTwo){
+  //   //   provinceTwo.getBufferSize();
+  //   //   var compareCenterValue = provinceTwo.findCenter();
+  //   //
+  //   //   // if center value + xBuffer (difference between highest and lowest buffer) >= center value xCoord of comparison
+  //   //   // But this basically just works for comparitors that start to the right or down as it is comparing centers and the buffer isn't large enough to get past borders
+  //   //
+  //   //   // if(((centerValue.xCoord + prov.xBuffer) >= provCompare.xLeft) && ((centerValue.xCoord - prov.xBuffer) <= provCompare.xleft) && (()(centerValue.yCoord + prov.yBuffer) >= provCompare.yBottom) && (centerValue.yCoord - ))
+  //   //
+  //   //
+  //   //   // if (((centerValue.xCoord + prov.xBuffer >= compareCenterValue.xCoord) && (centerValue.xCoord - prov.xBuffer <= compareCenterValue.xCoord)) && (centerValue.yCoord + prov.yBuffer >= compareCenterValue.yCoord) && (centerValue.yCoord - prov.yBuffer <= compareCenterValue.yCoord) && (centerValue.xCoord !== compareCenterValue.xCoord) && (centerValue.yCoord !== compareCenterValue.yCoord)){
+  //   //   //   prov.addNeighbor(provCompare);
+  //   //   //
+  //   //   // }
+  //   //
+  //   //   // Check Province 1 xLeft against province 2 xright where province 1 ytop or yBottom is inside province 2 ytop or yBottom
+  //   //   // if((provinceOne.xLeft > provinceTwo.xRight) && ((provinceOne.xLeft - buffer) < provinceTwo.xRight)) {
+  //   //   //   console.log("on the right of this country");
+  //   //   // }
+  //   //
+  //   //
+  //   //
+  //   //
+  //   //   // Check province 1 xright against province 2 xleft where province 1 ytop or ybottom is inside province 2 ytop or yBottom
+  //   //
+  //   //   // check province 1 ytop against province 2 ybottom where province 1 xleft or xright is inside of province 2 xleft and xright
+  //   //
+  //   //   // check province 1 ybottom against province 2 ytop where province 1 xleft or xright is inside of province 2 xleft and xright
+  //   //
+  //   //
+  //   //
+  //   //
+  //   //
+  //   //
+  //   //
+  //   //
+  //   // });
+  //
+  //
+  // });
 
 
 

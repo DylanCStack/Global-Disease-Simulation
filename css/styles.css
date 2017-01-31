@@ -2,3 +2,52 @@ body {
   margin: none;
   padding: none;
 }
+
+svg {
+  max-width: 100%;
+  height:auto;
+}
+
+#diseaseBox {
+  min-width:150px;
+  position: absolute;
+  bottom: 5%;
+  left: 2.5%;
+}
+
+label, button {
+  display: block;
+  float:right;
+  clear:both;
+}
+
+#toolTip {
+  /*min-width: 150px;*/
+  position: absolute;
+  bottom: 5%;
+  right: 2.5%;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  padding-left: 17px
+}
+
+#toolTip>ul>li {
+  margin-top: 15px;
+  border: 4px double black;
+  padding: 7px;
+  padding-right: 25px;
+}
+
+#toolTip>ul>li:nth-child(1){
+  font-size: 1.25em;
+}
+#toolTip>ul>li:nth-child(2){
+  font-size: 1.25em;
+}
+#toolTip>ul>li:nth-child(3){
+  font-size: 1.25em;
+}

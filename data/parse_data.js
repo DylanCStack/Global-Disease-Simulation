@@ -237,18 +237,19 @@ var populationNumbers = [
 {"country" : "Zimbabwe", "population" : 11669000}
 ];
 
-
+var allProvinces = [];////
 $(document).ready(function(){
   var gtags = document.getElementsByTagName('g');
   var countryMap = new Map();
   var countryNames = [];
+
   for (var x = 0; x < gtags.length; x++){
     var tempString = gtags[x].id;
     console.log(gtags[x].outerHTML);
     var tempCountryProvince = tempString.split(":");
     var tempCountry = tempCountryProvince[0];
     var tempProvince = new Province (tempCountryProvince[1], tempString);
-
+    allProvinces.push(tempProvince);////
     if (countryMap.has(tempCountry) === false){
       countryMap.set(tempCountry, [tempProvince]);
       countryNames.push(tempCountry);
@@ -266,6 +267,9 @@ $(document).ready(function(){
       }
     });
     countryObject.provinces = countryMap.get(cName);
+    countryObject.provinces.forEach(function(province){/////
+      province.country = countryObject;
+    })
     countryObject.setProvincePop();
     countriesObjects.push(countryObject);
   });

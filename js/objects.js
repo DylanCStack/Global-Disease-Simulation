@@ -4,8 +4,9 @@ function Country(countryName){
   this.countryName = countryName;
   this.totalPopulation = 0;
   this.provinces = [];
-  this.percentInfected = 0;
-  this.countryNeighbors = [];
+  this.percentInfected = 0;////
+  this.countryNeighbors = [];////
+  this.deaths = 0;/////
 };
 
 // Country prototype Methods
@@ -36,6 +37,8 @@ function Province(provinceName, svgId){
   this.population = 0;
   this.percentInfected = 0;
   this.provinceNeighbors = [];
+  this.country;////
+  this.deaths = 0;////
 };
 
 // Province prototype Methods

@@ -15,7 +15,7 @@ function formatBig(bigNumber){
 
 
 $(function(){
-
+  $("#globalPop").text(globalPopulation);
   $("#minimax").click(function(){
     $(this).siblings("form").toggle();
   })

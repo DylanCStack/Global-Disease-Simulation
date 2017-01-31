@@ -238,6 +238,7 @@ var populationNumbers = [
 ];
 
 var allProvinces = [];////
+var globalPopulation = 0;//////
 $(document).ready(function(){
   var gtags = document.getElementsByTagName('g');
   var countryMap = new Map();
@@ -264,6 +265,7 @@ $(document).ready(function(){
     populationNumbers.forEach(function(entry){
       if (entry.country === cName){
         countryObject.totalPopulation = entry.population;
+        globalPopulation += entry.population;///////
       }
     });
     countryObject.provinces = countryMap.get(cName);

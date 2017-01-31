@@ -16,6 +16,7 @@ function formatBig(bigNumber){
 
 $(function(){
   $("#globalPop").text(globalPopulation);
+
   $("#minimax").click(function(){
     $(this).siblings("form").toggle();
   })
@@ -45,6 +46,36 @@ $(function(){
 
   })
 
+  // $('svg').on( 'DOMMouseScroll mousewheel', function ( event ) {
+  //   if( event.originalEvent.detail > 0 || event.originalEvent.wheelDelta < 0 ) { //alternative options for wheelData: wheelDeltaX & wheelDeltaY
+  //     //scroll down
+  //     // if($(this).width() < $(window).width()){
+  //       $(this).css("width", $(this).width()-200   )
+  //     // }
+  //     console.log("down")
+  //
+  //   } else {
+  //     //scroll up
+  //     $(this).css("width", $(this).width()+200  )
+  //     console.log('Up');
+  //   }
+  //   //prevent page fom scrolling
+  //   return false;
+  // });
+  $(window).on('wheel', function(e) {
+
+    var delta = e.originalEvent.deltaY;
+
+    if (delta > 0){
+      console.log($('svg').width()-200)
+      $('svg').css("width", $('svg').width()-200   )
+    }
+    else {
+      console.log($('svg').width()-200)
+      $('svg').css("width", $('svg').width()+200  )
+    }
+    return false; // this line is only added so the whole page won't scroll in the demo
+  });
 
 
 

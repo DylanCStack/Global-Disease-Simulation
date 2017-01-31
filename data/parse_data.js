@@ -178,7 +178,7 @@ var populationNumbers = [
 {"country" : "Qatar", "population" : 599000},
 {"country" : "Reunion", "population" : 699000},
 {"country" : "Romania", "population" : 22455500},
-{"country" : "Russian Federation", "population" : 146934000},
+{"country" : "Russia", "population" : 146934000},
 {"country" : "Rwanda", "population" : 7733000},
 {"country" : "Saudi Arabia", "population" : 21607000},
 {"country" : "Sudan", "population" : 29490000},

@@ -20,19 +20,8 @@ $(function(){
     }
   })
   $("g").each(function(){
-    $(this).children("path").css("fill","#"+ red + green + blue);
-    red+=3;
-    green+=2;
-    blue+=1;
-    if(red>=9){
-      red %= 9;
-    }
-    if(blue>=9){
-      blue%= 9;
-    }
-    if(green>=9){
-      green %= 9;
-    }
+    $(this).children("path").css("fill","#"+ "00" + "60" + "00");
+
   })
 
 })

@@ -36,6 +36,7 @@ function Province(provinceName, svgId){
   this.population = 0;
   this.percentInfected = 0;
   this.provinceNeighbors = [];
+  this.provinceCoords = [];
 };
 
 // Province prototype Methods
@@ -44,7 +45,12 @@ Province.prototype.addNeighbor = function(neighbor){
   this.provinceNeighbors.push(neighbor);
 }
 
-
+// Coordinate object
+// Params: PointA: floating point number representing x coordinate, PointB: floating point number representing y coordinate
+function Coordinate(pointA, pointB){
+  this.xCoord = pointA;
+  this.yCoord = pointB;
+}
 
 // Disease object
 // Params: diseaseName: String, virulity: floating point number, lethality: floating point number, displayColor: string

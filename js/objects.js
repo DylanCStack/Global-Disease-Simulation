@@ -28,8 +28,6 @@ Country.prototype.addNeighbor = function(neighbor){
   this.countryNeighbors.push(neighbor);
 }
 
-
-
 // Province object
 // Params: provinceName: String, svgId: String
 function Province(provinceName, svgId){
@@ -69,17 +67,14 @@ function GameManager(countries, disease){
   this.worldPercentInfected = 0;
 };
 
-
 // Game Manager Methods
 // method for infecting a province with a disease
 GameManager.prototype.infect = function(province){
-
 
 };
 
 // method for growing a population infected
 GameManager.prototype.grow = function(virulity, population){
-
 
 };
 
@@ -92,7 +87,6 @@ GameManager.prototype.spread = function(neighbors){
 GameManager.prototype.reset = function(neighbors){
 
 };
-
 
 // Testing
 
@@ -121,9 +115,3 @@ GameManager.prototype.reset = function(neighbors){
 // var gameState = new GameManager(countryList, disease);
 //
 // console.log(gameState);
-
-
-
-// UI
-
-// Display Country Detail function

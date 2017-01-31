@@ -244,9 +244,11 @@ $(document).ready(function(){
   var countryNames = [];
   for (var x = 0; x < gtags.length; x++){
     var tempString = gtags[x].id;
+    console.log(gtags[x].outerHTML);
     var tempCountryProvince = tempString.split(":");
     var tempCountry = tempCountryProvince[0];
     var tempProvince = new Province (tempCountryProvince[1], tempString);
+
     if (countryMap.has(tempCountry) === false){
       countryMap.set(tempCountry, [tempProvince]);
       countryNames.push(tempCountry);
@@ -268,7 +270,7 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
-  console.log(countriesObjects);
+  //console.log(countriesObjects);
 
 
 

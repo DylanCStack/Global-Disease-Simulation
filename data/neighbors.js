@@ -259,14 +259,12 @@ $(document).ready(function(){
     // this strips out the html in front and at end of each string.
     var frontClean = coordInput.slice(coordInput.indexOf('path d="M') + 9);
     var clean = frontClean.slice(0, frontClean.indexOf('z"'));
-    console.log(clean);
     var cleanSplit = clean.split(/L|\s/);
-    console.log(cleanSplit.length);
+    // goes through array of coordinates and creates coordinate objects with x,y values
     for (var y = 0; y < cleanSplit.length; y+=2){
-      
+      var tempCoordinate = new Coordinate(cleanSplit[y], cleanSplit[y + 1]);
+      tempProvince.provinceCoords.push(tempCoordinate);
     }
-
-
 
     // sees if the countryMap already has the country.  If not add both country and province else only add province
     if (countryMap.has(tempCountry) === false){
@@ -290,7 +288,7 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
-  //console.log(countriesObjects);
+  console.log(countriesObjects);
 
 
 

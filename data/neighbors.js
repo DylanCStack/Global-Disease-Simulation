@@ -243,6 +243,7 @@ $(document).ready(function(){
   var gtags = document.getElementsByTagName('g');
   var countryMap = new Map();
   var countryNames = [];
+  var allProvinces = [];
   // cycle through gtags array
   for (var x = 0; x < gtags.length; x++){
     // grab the id string
@@ -255,16 +256,19 @@ $(document).ready(function(){
     var tempProvince = new Province (tempCountryProvince[1], tempString);
     // this string parsed will get coordinates for finding neighbors
     var coordInput = gtags[x].outerHTML;
-    //console.log(coordString);
     // this strips out the html in front and at end of each string.
     var frontClean = coordInput.slice(coordInput.indexOf('path d="M') + 9);
     var clean = frontClean.slice(0, frontClean.indexOf('z"'));
     var cleanSplit = clean.split(/L|\s/);
+
     // goes through array of coordinates and creates coordinate objects with x,y values
     for (var y = 0; y < cleanSplit.length; y+=2){
       var tempCoordinate = new Coordinate(cleanSplit[y], cleanSplit[y + 1]);
       tempProvince.provinceCoords.push(tempCoordinate);
     }
+
+    // Push province object on to array of provinces for creating province relationships
+    allProvinces.push(tempProvince);
 
     // sees if the countryMap already has the country.  If not add both country and province else only add province
     if (countryMap.has(tempCountry) === false){
@@ -288,7 +292,34 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
-  console.log(countriesObjects);
+  var adjBuffer = 20;
+  // go through each province
+  allProvinces.forEach(function(prov){
+    //get center value
+    var centerValue = prov.findCenter();
+
+    // go through each other province and get its center value
+    allProvinces.forEach(function(provCompare){
+      var compareCenterValue = provCompare.findCenter();
+
+      if ((centerValue.xCoord + adjBuffer >= compareCenterValue.xCoord) && (centerValue.xCoord - 5 <= compareCenterValue.xCoord) && (centerValue.yCoord + adjBuffer >= compareCenterValue.yCoord) && (centerValue.yCoord - adjBuffer <= compareCenterValue.yCoord) && (centerValue.xCoord !== compareCenterValue.yCoord) && (centerValue.yCoord !== compareCenterValue.yCoord)){
+        prov.addNeighbor(provCompare);
+        provCompare.addNeighbor(prov);
+      }
+
+
+
+    });
+
+
+  });
+
+
+
+
+  var gameManager = new GameManager(countriesObjects, "Sars")
+  console.log(gameManager);
+  //console.log(allProvinces);
 
 
 

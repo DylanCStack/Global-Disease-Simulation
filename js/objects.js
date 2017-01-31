@@ -45,11 +45,27 @@ Province.prototype.addNeighbor = function(neighbor){
   this.provinceNeighbors.push(neighbor);
 }
 
+// Method for finding general center of province
+Province.prototype.findCenter = function(){
+  var xCoordCenter = 0;
+  var yCoordCenter = 0;
+  this.provinceCoords.forEach(function(coord){
+    xCoordCenter += coord.xCoord;
+    yCoordCenter += coord.yCoord;
+  });
+
+  var center = new Coordinate(xCoordCenter/this.provinceCoords.length, yCoordCenter/this.provinceCoords.length);
+
+  return center;
+
+}
+
+
 // Coordinate object
 // Params: PointA: floating point number representing x coordinate, PointB: floating point number representing y coordinate
 function Coordinate(pointA, pointB){
-  this.xCoord = pointA;
-  this.yCoord = pointB;
+  this.xCoord = parseFloat(pointA);
+  this.yCoord = parseFloat(pointB);
 }
 
 // Disease object

@@ -1,18 +1,44 @@
 body {
   margin: none;
   padding: none;
+  background: rgba(0, 30, 60, 1);
+  font-family: 'Inconsolata', monospace;
+  letter-spacing: 3px;
 }
 
 svg {
   max-width: 100%;
+
   height:auto;
 }
 
 #diseaseBox {
-  min-width:150px;
   position: absolute;
   bottom: 5%;
   left: 2.5%;
+
+
+  }
+
+#diseaseBox>* {
+  min-width:150px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgba(90, 65, 65, 0.5);
+  color:white;
+  border: 4px double black;
+  overflow:hidden;
+}
+
+.diseaseButton {
+  background: rgba(150, 0, 0, 1);
+  padding: 1%;
+}
+input {
+  border: 1px solid white;
+  background: rgba(90, 65, 65, 0.5);
+  border-radius: 3px;
+
 }
 
 label, button {
@@ -20,29 +46,59 @@ label, button {
   float:right;
   clear:both;
 }
-
-#toolTip {
-  /*min-width: 150px;*/
-  position: absolute;
-  bottom: 5%;
-  right: 2.5%;
-}
-
 li {
   list-style: none;
 }
 ul {
   padding-left: 17px
 }
+#toolTip {
+  /*min-width: 150px;*/
+
+  color:white;
+
+  position: absolute;
+  bottom: 5%;
+  right: 2.5%;
+}
 
 #toolTip>ul>li {
+  background: rgba(90, 65, 65, 0.5);
   margin-top: 15px;
   border: 4px double black;
   padding: 7px;
   padding-right: 25px;
+  opacity:1;
+  border-radius: 10px;
+  font-size: 1.1em;
 }
+#toolTip>ul>li>ul>*{
+  font-size: .9em;
+  /*does not work*/
+}
+ul>li>ul>li>span{
+  float:right;
+}
+.pop {
+  color: #39FF14;
+}
+.infected{
+  color:#ddcc20;
+}
+.deaths{
+  color:red;
+}
+#countryProvinces {
+  color:salmon;
+}
+ /*span:first-of-type{
+   color:green;
+ }
+ span:last-of-type{
+   color:darkred;
+ }*/
 
-#toolTip>ul>li:nth-child(1){
+/*#toolTip>ul>li:nth-child(1){
   font-size: 1.25em;
 }
 #toolTip>ul>li:nth-child(2){
@@ -50,4 +106,4 @@ ul {
 }
 #toolTip>ul>li:nth-child(3){
   font-size: 1.25em;
-}
+}*/

@@ -1,9 +1,22 @@
 $(function(){
+
+  $("#minimax").click(function(){
+    $(this).siblings("form").toggle();
+  })
+
+
+
+
+
+
+
+
+
+
+
   var red= 1;
   var green = 2
   var blue = 3;
-
-
   $("g").click(function(){
     $(this).children("path").css("fill","#"+ red + green + blue);
     red+=3;

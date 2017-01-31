@@ -292,17 +292,22 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
-  var adjBuffer = 20;
+
   // go through each province
   allProvinces.forEach(function(prov){
     //get center value
     var centerValue = prov.findCenter();
+    // set the province buffers
+    prov.getBufferSize();
+
+
+
 
     // go through each other province and get its center value
     allProvinces.forEach(function(provCompare){
       var compareCenterValue = provCompare.findCenter();
 
-      if ((centerValue.xCoord + adjBuffer >= compareCenterValue.xCoord) && (centerValue.xCoord - 5 <= compareCenterValue.xCoord) && (centerValue.yCoord + adjBuffer >= compareCenterValue.yCoord) && (centerValue.yCoord - adjBuffer <= compareCenterValue.yCoord) && (centerValue.xCoord !== compareCenterValue.yCoord) && (centerValue.yCoord !== compareCenterValue.yCoord)){
+      if ((centerValue.xCoord + prov.xBuffer >= compareCenterValue.xCoord) && (centerValue.xCoord - prov.xBuffer <= compareCenterValue.xCoord) && (centerValue.yCoord + prov.yBuffer >= compareCenterValue.yCoord) && (centerValue.yCoord - prov.yBuffer <= compareCenterValue.yCoord) && (centerValue.xCoord !== compareCenterValue.xCoord) && (centerValue.yCoord !== compareCenterValue.yCoord)){
         prov.addNeighbor(provCompare);
         provCompare.addNeighbor(prov);
       }

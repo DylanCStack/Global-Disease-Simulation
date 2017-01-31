@@ -37,6 +37,8 @@ function Province(provinceName, svgId){
   this.percentInfected = 0;
   this.provinceNeighbors = [];
   this.provinceCoords = [];
+  this.xBuffer = 0;
+  this.yBuffer = 0;
 };
 
 // Province prototype Methods
@@ -60,6 +62,34 @@ Province.prototype.findCenter = function(){
 
 }
 
+// Method for setting buffer size based on size of provinceCoords
+Province.prototype.getBufferSize = function(){
+  var xleft = 10000000;
+  var xright = -1000000;
+  var ytop = 10000000;
+  var ybottom = -100000000;
+
+  this.provinceCoords.forEach(function(coord){
+    if (coord.xCoord < xleft){
+      xleft = coord.xCoord;
+    }
+    if (coord.xCoord > xright){
+      xright = coord.xCoord;
+    }
+    if (coord.yCoord < ytop){
+      ytop = coord.yCoord;
+    }
+    if (coord.yCoord > ybottom){
+      ybottom = coord.yCoord;
+    }
+  });
+
+  this.xBuffer = (xright - xleft);
+  this.yBuffer = (ybottom - ytop);
+
+
+
+}
 
 // Coordinate object
 // Params: PointA: floating point number representing x coordinate, PointB: floating point number representing y coordinate

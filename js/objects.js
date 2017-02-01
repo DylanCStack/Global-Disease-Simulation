@@ -112,9 +112,9 @@ function Coordinate(pointA, pointB){
 
 // Disease object
 // Params: diseaseName: String, virulity: floating point number, lethality: floating point number, displayColor: string
-function Disease(diseaseName, virulity, lethality, displayColor){
+function Disease(diseaseName, virulence, lethality, displayColor){
   this.diseaseName = diseaseName;
-  this.virulity = virulity;
+  this.virulence = virulence;
   this.lethality = lethality;
   this.displayColor = displayColor;
 };

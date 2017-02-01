@@ -304,7 +304,7 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
-  var buffer = 20;
+  var buffer = 10;
 
   //   //   // Check province 1 xright against province 2 xleft where province 1 ytop or ybottom is inside province 2 ytop or yBottom
   //   //
@@ -315,14 +315,23 @@ $(document).ready(function(){
   allProvinces.forEach(function(oneProvince){
 
     allProvinces.forEach(function(anotherProvince){
-      if((oneProvince.xLeft + buffer > anotherProvince.xRight) && ((oneProvince.xLeft - buffer) < anotherProvince.xRight) && ((oneProvince.yTop || oneProvince.yBottom) < anotherProvince.yBottom + buffer) && (oneProvince.yBottom || oneProvince.yTop) > anotherProvince.yTop - buffer){
+      // finds neighbors to the right and top
+      if((oneProvince.xLeft + buffer > anotherProvince.xRight) && ((oneProvince.xLeft - buffer) < anotherProvince.xRight) && (oneProvince.yBottom < anotherProvince.yBottom + buffer) && (oneProvince.yBottom > anotherProvince.yTop - buffer)){
         oneProvince.addNeighbor(anotherProvince);
-      } else if ((oneProvince.xRight + buffer > anotherProvince.xLeft) && ((oneProvince.xRight - buffer) < anotherProvince.xLeft) && ((oneProvince.yTop || oneProvince.yBottom) < anotherProvince.yBottom + buffer) && (oneProvince.ybottom || oneProvince.yTop) > anotherProvince.yTop - buffer){
+        // finds neighbors to the right and bottom
+      } else if ((oneProvince.xLeft + buffer > anotherProvince.xRight) && ((oneProvince.xLeft - buffer) < anotherProvince.xRight) && (oneProvince.yTop < anotherProvince.yBottom + buffer) && (oneProvince.yTop > anotherProvince.yTop - buffer)){
         oneProvince.addNeighbor(anotherProvince);
+        // finds neighbors to the left and top
+      } else if ((oneProvince.xRight + buffer > anotherProvince.xLeft) && ((oneProvince.xRight - buffer) < anotherProvince.xLeft) && (oneProvince.yBottom < anotherProvince.yBottom + buffer) && (oneProvince.ybottom > anotherProvince.yTop - buffer)){
+        oneProvince.addNeighbor(anotherProvince);
+        // finds neighbors to the left and bottom
+      } else if ((oneProvince.xRight + buffer > anotherProvince.xLeft) && (oneProvince.xRight < anotherProvince.xRight) && (oneProvince.yTop < anotherProvince.yBottom + buffer) && (oneProvince.yTop > anotherProvince.yTop - buffer)){
+        oneProvince.addNeighbor(anotherProvince);
+        // finds neighbors below
       } else if ((oneProvince.yTop + buffer > anotherProvince.yBottom) && ((oneProvince.yTop - buffer) < anotherProvince.yBottom) && ((oneProvince.xLeft || oneProvince.xRight) < anotherProvince.xRight + buffer) && (oneProvince.xLeft || oneProvince.xRight) > anotherProvince.xLeft - buffer) {
         oneProvince.addNeighbor(anotherProvince);
+        // finds neighbors above
       } else if ((oneProvince.yBottom + buffer > anotherProvince.yTop) && ((oneProvince.yBottom - buffer) < anotherProvince.yTop) && ((oneProvince.xLeft || oneProvince.xRight) < anotherProvince.xRight + buffer) && (oneProvince.xLeft || oneProvince.xRight) > anotherProvince.xLeft - buffer) {
-        oneProvince.addNeighbor(anotherProvince);
       }
     });
   });

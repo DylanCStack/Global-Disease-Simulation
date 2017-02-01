@@ -36,6 +36,7 @@ function Province(provinceName, svgId){
   this.svgId = svgId;
   this.population = 0;
   this.percentInfected = 0;
+
   this.provinceNeighbors = [];
   this.provinceCoords = [];
   this.xBuffer = 0;

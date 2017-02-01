@@ -9,6 +9,17 @@ $(document).ready(function() {
 
     var newDisease = new Disease(diseaseName,diseaseVirulence,diseaseLethality,diseaseColor);
     //create disease
+    $("g").click(function(){
+      var myID = $(this).attr("id");
+      var provinceZero;
+      allProvinces.forEach(function(provinceBeingSearchedThrough){
+        if(provinceBeingSearchedThrough.svgId === myID){
+
+          provinceZero = provinceBeingSearchedThrough;
+          provinceZero.percentInfected = (10/100)*newDisease.virulence;
+        }
+        $("g").off('click');
+    })
 
 
 
@@ -16,10 +27,12 @@ $(document).ready(function() {
 
     setInterval(function(){
       //run disease every x seconds.
+
       console.log("1 second")
     }, 1000);
 
 
   })
 
+  })
 })

@@ -34,11 +34,11 @@ $(function(){
   $("g").hover(function(){//shows province and country data on hover
     var myID = $(this).attr("id");
     var myProvince, myCountry;
-    allProvinces.forEach(function(province){
-      if(province.svgId === myID){
+    allProvinces.forEach(function(provinceBeingSearchedThrough){
+      if(provinceBeingSearchedThrough.svgId === myID){
 
-        myCountry = province.country;
-        myProvince = province;
+        myCountry = provinceBeingSearchedThrough.country;
+        myProvince = provinceBeingSearchedThrough;
 
       }
     })
@@ -105,24 +105,24 @@ $(function(){
 
 
 
-  var red= 1;
-  var green = 2
-  var blue = 3;
-  $("g").click(function(){
-    $(this).children("path").css("fill","#"+ red + green + blue);
-    red+=3;
-    green+=2;
-    blue+=1;
-    if(red>=9){
-      red %= 9;
-    }
-    if(blue>=9){
-      blue%= 9;
-    }
-    if(green>=9){
-      green %= 9;
-    }
-  })
+  // var red= 1;
+  // var green = 2
+  // var blue = 3;
+  // $("g").click(function(){
+  //   $(this).children("path").css("fill","#"+ red + green + blue);
+  //   red+=3;
+  //   green+=2;
+  //   blue+=1;
+  //   if(red>=9){
+  //     red %= 9;
+  //   }
+  //   if(blue>=9){
+  //     blue%= 9;
+  //   }
+  //   if(green>=9){
+  //     green %= 9;
+  //   }
+  // })
   $("g").each(function(){
     $(this).children("path").css("fill","#"+ "00" + "60" + "00");
 

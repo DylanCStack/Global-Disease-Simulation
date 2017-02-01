@@ -10,7 +10,17 @@ function formatBig(bigNumber){
     bigNumber.match(/.{1,3}/g).join(",");
     return bigNumber;
 }
-
+function constrainSVG(){
+  if($("svg").width()<= $(window).width()){
+    $("svg").css({left:0+'px'});
+    $("svg").css({top:0+'px'});
+    $('svg').css("width", $(window).width())
+  }// else if ($("svg").prop("left") > 0 ){
+  //   $("svg").css({left:0+'px'});
+  // } else if ($("svg").prop("top") > 0 ){
+  //   $("svg").css({top:0+'px'});
+  // }
+}
 
 
 
@@ -21,7 +31,7 @@ $(function(){
     $(this).siblings("form").toggle();
   })
 
-  $("g").hover(function(){
+  $("g").hover(function(){//shows province and country data on hover
     var myID = $(this).attr("id");
     var myProvince, myCountry;
     allProvinces.forEach(function(province){
@@ -46,34 +56,25 @@ $(function(){
 
   })
 
-  // $('svg').on( 'DOMMouseScroll mousewheel', function ( event ) {
-  //   if( event.originalEvent.detail > 0 || event.originalEvent.wheelDelta < 0 ) { //alternative options for wheelData: wheelDeltaX & wheelDeltaY
-  //     //scroll down
-  //     // if($(this).width() < $(window).width()){
-  //       $(this).css("width", $(this).width()-200   )
-  //     // }
-  //     console.log("down")
-  //
-  //   } else {
-  //     //scroll up
-  //     $(this).css("width", $(this).width()+200  )
-  //     console.log('Up');
-  //   }
-  //   //prevent page fom scrolling
-  //   return false;
-  // });
-  $(window).on('wheel', function(e) {
+
+  $(window).on('wheel', function(e) {//zooms into or out of map on scroll
 
     var delta = e.originalEvent.deltaY;
-
+    var svg = $("svg");
     if (delta > 0){
       console.log($('svg').width()-200)
       $('svg').css("width", $('svg').width()-200   )
+      $("svg").css({left:svg.position().left+(200/2)+'px'});
+      $("svg").css({top:svg.position().top+(96.475/2)+'px'});
     }
     else {
       console.log($('svg').width()-200)
       $('svg').css("width", $('svg').width()+200  )
+      $("svg").css({left:svg.position().left-(200/2)+'px'});
+      $("svg").css({top:svg.position().top-(96.475/2)+'px'});
+
     }
+    constrainSVG();
     return false; // this line is only added so the whole page won't scroll in the demo
   });
 
@@ -81,6 +82,7 @@ $(function(){
     var mouseX = event.pageX;
     var mouseY = event.pageY;
     $( document ).on( "mousemove", function( event ) {
+      constrainSVG();
       console.log(mouseX - event.pageX);
       var xMove = mouseX - event.pageX;
       var yMove = mouseY - event.pageY;

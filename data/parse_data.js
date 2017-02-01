@@ -178,7 +178,7 @@ var populationNumbers = [
 {"country" : "Qatar", "population" : 599000},
 {"country" : "Reunion", "population" : 699000},
 {"country" : "Romania", "population" : 22455500},
-{"country" : "Russian Federation", "population" : 146934000},
+{"country" : "Russia", "population" : 146934000},
 {"country" : "Rwanda", "population" : 7733000},
 {"country" : "Saudi Arabia", "population" : 21607000},
 {"country" : "Sudan", "population" : 29490000},
@@ -237,18 +237,20 @@ var populationNumbers = [
 {"country" : "Zimbabwe", "population" : 11669000}
 ];
 
-
+var allProvinces = [];////
+var globalPopulation = 0;//////
 $(document).ready(function(){
   var gtags = document.getElementsByTagName('g');
   var countryMap = new Map();
   var countryNames = [];
+
   for (var x = 0; x < gtags.length; x++){
     var tempString = gtags[x].id;
     console.log(gtags[x].outerHTML);
     var tempCountryProvince = tempString.split(":");
     var tempCountry = tempCountryProvince[0];
     var tempProvince = new Province (tempCountryProvince[1], tempString);
-
+    allProvinces.push(tempProvince);////
     if (countryMap.has(tempCountry) === false){
       countryMap.set(tempCountry, [tempProvince]);
       countryNames.push(tempCountry);
@@ -263,9 +265,13 @@ $(document).ready(function(){
     populationNumbers.forEach(function(entry){
       if (entry.country === cName){
         countryObject.totalPopulation = entry.population;
+        globalPopulation += entry.population;///////
       }
     });
     countryObject.provinces = countryMap.get(cName);
+    countryObject.provinces.forEach(function(province){/////
+      province.country = countryObject;
+    })
     countryObject.setProvincePop();
     countriesObjects.push(countryObject);
   });

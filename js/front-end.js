@@ -77,6 +77,25 @@ $(function(){
     return false; // this line is only added so the whole page won't scroll in the demo
   });
 
+  $(window).mousedown(function(event){
+    var mouseX = event.pageX;
+    var mouseY = event.pageY;
+    $( document ).on( "mousemove", function( event ) {
+      console.log(mouseX - event.pageX);
+      var xMove = mouseX - event.pageX;
+      var yMove = mouseY - event.pageY;
+      var svg = $("svg");
+      $("svg").css({left:svg.position().left-xMove+'px'});
+      $("svg").css({top:svg.position().top-yMove+'px'});
+      //
+
+      mouseX = event.pageX;
+      mouseY = event.pageY;
+    });
+  })
+  $(window).mouseup(function(event){
+    $(document).off("mousemove");
+  })
 
 
 

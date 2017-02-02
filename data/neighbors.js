@@ -346,7 +346,52 @@ $(document).ready(function(){
     })
   });
 
+  // artificial neighbor creation for simulation
+  newAllProvinces.forEach(function(province){
+    if(province.provinceName === "Mudug Region"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "Tamil Nadu State" || newNeighbor.provinceName === "South Australia State" ||newNeighbor.provinceName === "Tomansina Province")
+        province.provinceNeighbors.push(newNeighbor)
 
+      })
+    }else if(province.provinceName === "England Division"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "Ostgronland Region" || newNeighbor.provinceName === "Quebec Province" ||newNeighbor.provinceName === "Northwest Territories Territory")
+        province.provinceNeighbors.push(newNeighbor)
+
+      })
+    }else if(province.provinceName === "Lofa County"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "Buenos Aires Province" || newNeighbor.provinceName === "Bolivar State" ||newNeighbor.provinceName === "Colon Department")
+        province.provinceNeighbors.push(newNeighbor)
+
+      })
+    }else if(province.provinceName === "Centre Region"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "Florida State")
+        province.provinceNeighbors.push(newNeighbor)
+
+      })
+    }else if(province.provinceName === "Nei Mongol Autonomous Region"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "California State" || newNeighbor.provinceName === "Alaska State" ||newNeighbor.provinceName === "Santa Cruz Province" || newNeighbor.provinceName === "Respublika Sakha(Yakutiya) Republic")
+        province.provinceNeighbors.push(newNeighbor)
+
+      })
+    }else if(province.provinceName === "Bolivar State"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "Buenos Aires Province" || newNeighbor.provinceName === "Lofa County" ||newNeighbor.provinceName === "Colon Department")
+        province.provinceNeighbors.push(newNeighbor)
+
+      })
+    }else if(province.provinceName === "Georgia State"){
+      newAllProvinces.forEach(function(newNeighbor){
+        if(newNeighbor.provinceName === "Centre Region" || newNeighbor.provinceName === "England Division" ||newNeighbor.provinceName === "Colon Department")
+        province.provinceNeighbors.push(newNeighbor)
+
+      })
+    }
+  })
 
 
 

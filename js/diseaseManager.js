@@ -21,7 +21,7 @@ $(document).ready(function() {
 
           provinceZero = provinceBeingSearchedThrough;
           provinceZero.percentInfected = (10/100)*newDisease.virulence;
-          alert(provinceZero.svgId);
+
           console.log(provinceZero);
         }
         $("g").off('click');
@@ -43,16 +43,25 @@ $(document).ready(function() {
 
             console.log(neighbor);
 
-            neighbor.percentInfected += 100;
+            neighbor.percentInfected += 1;
             if(neighbor.percentInfected >= 100){
               neighbor.percentInfected = 100;
             }
             console.log(neighbor.provinceName + " is now infected " + neighbor.percentInfected + "%");
 
-            var myID = neighbor.svgId;
-            $(document.getElementById(neighbor.svgId)).children("path").css("fill","#"+ "60" + "00" + "00");
 
-            alert("#" + neighbor.svgId.toString())
+            var color = neighbor.percentInfected*.7;
+            var landColor = 60 -(neighbor.percentInfected * .4)
+            if(color < 10){
+              color = "0" + color;
+            }
+            if(landColor < 10){
+              landColor = "0" + landColor;
+            }
+
+            $(document.getElementById(neighbor.svgId)).children("path").css("fill","#"+ color + "00" + "00");
+
+
 
             // $("g").each(function(){
             //   if(neighbor.svgId = this.id){

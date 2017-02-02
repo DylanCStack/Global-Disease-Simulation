@@ -126,7 +126,8 @@ $(function(){
   // })
 
   $("g").each(function(){
-    $(this).children("path").css("fill","#"+ "00" + "60" + "00");
+    $(this).children("path").css("fill","#"+ "00" + "00" + "00");
+    $(this).children("path").css("stroke","#"+ "f0" + "f0" + "f0");
 
   })
 

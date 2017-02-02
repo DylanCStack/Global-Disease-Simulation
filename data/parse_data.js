@@ -238,6 +238,7 @@ var populationNumbers = [
 ];
 
 var allProvinces = [];////
+newNewAllProvinces = []////
 var globalPopulation = 0;//////
 $(document).ready(function(){
   var gtags = document.getElementsByTagName('g');
@@ -258,7 +259,7 @@ $(document).ready(function(){
       countryMap.get(tempCountry).push(tempProvince);
     }
   }
-  
+
 
   countryNames.forEach(function(cName){
     var countryObject = new Country(cName);
@@ -272,6 +273,7 @@ $(document).ready(function(){
     countryObject.provinces = countryMap.get(cName);
     countryObject.provinces.forEach(function(province){/////
       province.country = countryObject;
+      newNewAllProvinces.push(province);//////////****hacked
     })
     countryObject.setProvincePop();
     countriesObjects.push(countryObject);

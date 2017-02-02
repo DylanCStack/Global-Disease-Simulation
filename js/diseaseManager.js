@@ -13,7 +13,8 @@ $(document).ready(function() {
     $("g").click(function(){
       var myID = $(this).attr("id");
       var provinceZero;
-      newAllProvinces.forEach(function(provinceBeingSearchedThrough){
+      console.log(myID);
+      newAllProvinces.forEach(function(provinceBeingSearchedThrough){//give disease a starting location
         console.log(provinceBeingSearchedThrough.provinceNeighbors[0]);
         if(provinceBeingSearchedThrough.svgId === myID){
 
@@ -27,19 +28,29 @@ $(document).ready(function() {
     });
 
 
-    //give disease a starting location
+
 
     setInterval(function(){
       //run disease every x seconds.
       newAllProvinces.forEach(function(province){
         if(province.percentInfected > 0){
-          province.provinceNeighbors.forEach( function(neighbor){
-            neighbor.percentInfected += 5;
 
+          province.provinceNeighbors.forEach( function(neighbor){
+            console.log(neighbor);
+
+
+
+            neighbor.percentInfected += 5;
             if(neighbor.percentInfected >= 100){
               neighbor.percentInfected = 100;
-
             }
+            console.log(neighbor.provinceName + " is now infected " + neighbor.percentInfected + "%");
+
+            $(neighbor.svgId.toString()).css("fill","#"+ "60" + "60" + "60");
+            var myID = neighbor.svgId;
+            console.log(myID)
+            console.log($(myID).attr('fill'));
+
 
           })
         }

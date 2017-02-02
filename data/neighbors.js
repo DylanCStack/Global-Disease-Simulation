@@ -304,7 +304,7 @@ $(document).ready(function(){
     countriesObjects.push(countryObject);
   });
 
-  var buffer = 10;
+  var buffer = 20;/////CHANGED FROM 10 BY DYLAN TO INFECT MORE COUNTRIES
 
   //   //   // Check province 1 xright against province 2 xleft where province 1 ytop or ybottom is inside province 2 ytop or yBottom
   //   //
@@ -339,6 +339,11 @@ $(document).ready(function(){
       }
     });
     newAllProvinces.push(oneProvince);
+    countriesObjects.forEach(function(country){
+      if(oneProvince.svgId.split(":")[0] === country.countryName){
+        oneProvince.country = country;
+      }
+    })
   });
 
 

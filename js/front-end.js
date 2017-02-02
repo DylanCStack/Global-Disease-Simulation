@@ -34,7 +34,7 @@ $(function(){
   $("g").hover(function(){//shows province and country data on hover
     var myID = $(this).attr("id");
     var myProvince, myCountry;
-    allProvinces.forEach(function(provinceBeingSearchedThrough){
+    newAllProvinces.forEach(function(provinceBeingSearchedThrough){
       if(provinceBeingSearchedThrough.svgId === myID){
 
         myCountry = provinceBeingSearchedThrough.country;
@@ -123,6 +123,7 @@ $(function(){
   //     green %= 9;
   //   }
   // })
+
   $("g").each(function(){
     $(this).children("path").css("fill","#"+ "00" + "60" + "00");
 

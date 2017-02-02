@@ -258,6 +258,7 @@ $(document).ready(function(){
       countryMap.get(tempCountry).push(tempProvince);
     }
   }
+  
 
   countryNames.forEach(function(cName){
     var countryObject = new Country(cName);

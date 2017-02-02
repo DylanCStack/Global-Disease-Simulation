@@ -9,7 +9,7 @@ function containsObject(obj, list) {
 }
 
 var countriesObjects = [];
-
+var newAllProvinces = [];
 // from https://github.com/samayo/country-data/blob/master/src/country-population.json
 var populationNumbers = [
 {"country" : "Aruba", "population" : 103000},
@@ -312,12 +312,16 @@ $(document).ready(function(){
   //   //
   //   //   // check province 1 ybottom against province 2 ytop where province 1 xleft or xright is inside of province 2 xleft and xright
 
+
+
+  var counter = 0;
   allProvinces.forEach(function(oneProvince){
 
     allProvinces.forEach(function(anotherProvince){
       // finds neighbors to the right and top
       if((oneProvince.xLeft + buffer > anotherProvince.xRight) && ((oneProvince.xLeft - buffer) < anotherProvince.xRight) && (oneProvince.yBottom < anotherProvince.yBottom + buffer) && (oneProvince.yBottom > anotherProvince.yTop - buffer)){
         oneProvince.addNeighbor(anotherProvince);
+        // console.log(oneProvince.svgId + " has a neighbor called " + anotherProvince.svgId);
         // finds neighbors to the right and bottom
       } else if ((oneProvince.xLeft + buffer > anotherProvince.xRight) && ((oneProvince.xLeft - buffer) < anotherProvince.xRight) && (oneProvince.yTop < anotherProvince.yBottom + buffer) && (oneProvince.yTop > anotherProvince.yTop - buffer)){
         oneProvince.addNeighbor(anotherProvince);
@@ -334,7 +338,10 @@ $(document).ready(function(){
       } else if ((oneProvince.yBottom + buffer > anotherProvince.yTop) && ((oneProvince.yBottom - buffer) < anotherProvince.yTop) && ((oneProvince.xLeft || oneProvince.xRight) < anotherProvince.xRight + buffer) && (oneProvince.xLeft || oneProvince.xRight) > anotherProvince.xLeft - buffer) {
       }
     });
+    newAllProvinces.push(oneProvince);
   });
+
+
 
 
 

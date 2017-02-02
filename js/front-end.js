@@ -110,6 +110,7 @@ $(function(){
   // var blue = 3;
   // $("g").click(function(){
   //   $(this).children("path").css("fill","#"+ red + green + blue);
+  //   alert(this.id);
   //   red+=3;
   //   green+=2;
   //   blue+=1;

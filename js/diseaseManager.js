@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   $("#diseaseInput").submit(function(event) {
     event.preventDefault();
+    $("#diseaseBox").hide();
 
     var diseaseName = $("#diseaseName").val();
     var diseaseVirulence = $("#diseaseVirulence").val();
@@ -20,6 +21,7 @@ $(document).ready(function() {
 
           provinceZero = provinceBeingSearchedThrough;
           provinceZero.percentInfected = (10/100)*newDisease.virulence;
+          alert(provinceZero.svgId);
           console.log(provinceZero);
         }
         $("g").off('click');
@@ -36,17 +38,22 @@ $(document).ready(function() {
         if(province.percentInfected > 0){
 
           province.provinceNeighbors.forEach( function(neighbor){
+
+
+
             console.log(neighbor);
 
-
-
-            neighbor.percentInfected += 5;
+            neighbor.percentInfected += 100;
             if(neighbor.percentInfected >= 100){
               neighbor.percentInfected = 100;
             }
             console.log(neighbor.provinceName + " is now infected " + neighbor.percentInfected + "%");
 
             var myID = neighbor.svgId;
+            $(document.getElementById(neighbor.svgId)).children("path").css("fill","#"+ "60" + "00" + "00");
+
+            alert("#" + neighbor.svgId.toString())
+
             // $("g").each(function(){
             //   if(neighbor.svgId = this.id){
             //     $(this).children("path").css("fill","#"+ "60" + "60" + "60");
@@ -64,7 +71,7 @@ $(document).ready(function() {
         }
       })
       console.log("1 second")
-    }, 5000);
+    }, 2000);
 
 
 

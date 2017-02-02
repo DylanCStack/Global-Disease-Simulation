@@ -46,17 +46,25 @@ $(document).ready(function() {
             }
             console.log(neighbor.provinceName + " is now infected " + neighbor.percentInfected + "%");
 
-            $(neighbor.svgId.toString()).css("fill","#"+ "60" + "60" + "60");
             var myID = neighbor.svgId;
-            console.log(myID)
-            console.log($(myID).attr('fill'));
+            // $("g").each(function(){
+            //   if(neighbor.svgId = this.id){
+            //     $(this).children("path").css("fill","#"+ "60" + "60" + "60");
+            //   }
+            //
+            //
+            //
+            //   var myID = neighbor.svgId;
+            //   console.log(myID)
+            //   console.log($(myID).children("path").attr('fill'));
+            // });
 
 
           })
         }
       })
       console.log("1 second")
-    }, 1000);
+    }, 5000);
 
 
 

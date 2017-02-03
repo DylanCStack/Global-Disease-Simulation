@@ -48,6 +48,7 @@ $(function(){
     $("#countryProvinces").text(myCountry.provinces.length);
     $("#countryInfected").text(myCountry.percentInfected);
     $("#countryDeaths").text(myCountry.deaths);
+
     //province name
     $("#provinceName").text(myProvince.provinceName);
     $("#provincePop").text(Math.ceil(myProvince.population));

@@ -60,30 +60,10 @@ $(document).ready(function() {
             }
 
             $(document.getElementById(neighbor.svgId)).children("path").css("fill","#"+ color + "00" + "00");
-
-
-
-            // $("g").each(function(){
-            //   if(neighbor.svgId = this.id){
-            //     $(this).children("path").css("fill","#"+ "60" + "60" + "60");
-            //   }
-            //
-            //
-            //
-            //   var myID = neighbor.svgId;
-            //   console.log(myID)
-            //   console.log($(myID).children("path").attr('fill'));
-            // });
-
-
           })
         }
       })
-      console.log("1 second")
+      console.log("2 seconds")
     }, 2000);
-
-
-
-
   });
 });

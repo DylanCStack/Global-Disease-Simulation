@@ -14,7 +14,7 @@ svg {
   width: 100%;
   height:auto;
   left:0px;
-  top:0px;
+  top:120px;
   z-index: -1;
 }
 
@@ -122,19 +122,3 @@ ul>li>ul>li>span{
 #countryProvinces {
   color:salmon;
 }
- /*span:first-of-type{
-   color:green;
- }
- span:last-of-type{
-   color:darkred;
- }*/
-
-/*#toolTip>ul>li:nth-child(1){
-  font-size: 1.25em;
-}
-#toolTip>ul>li:nth-child(2){
-  font-size: 1.25em;
-}
-#toolTip>ul>li:nth-child(3){
-  font-size: 1.25em;
-}*/

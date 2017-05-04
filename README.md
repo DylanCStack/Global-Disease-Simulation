@@ -1,14 +1,14 @@
-#Global Disease Simulation
-###Authored by Dylan Stackhouse, David Quisenberry, and Jay Freeman
-##Description
+# Global Disease Simulation
+### Authored by Dylan Stackhouse, David Quisenberry, and Jay Freeman
+## Description
 A global disease simulator based on the adjacency of subnational territories.
-##Setup
+## Setup
 There are two ways to view the project.
 
 1. Clone or download the repository form [here](https://github.com/DylanCStack/Global-Disease-Simulation) and open index.html in any web browser.
 2. Visit the project's gh-pages site [here](https://dylancstack.github.io/Global-Disease-Simulation/).
 
-##Specs
+## Specs
 1. The program will display a map of the world with all subnational borders highlighted.
 2. The program will display name and population information for a territory when the user hovers over it.
   * Input: hover
